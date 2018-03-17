@@ -36,7 +36,6 @@ const todoList = {
         this.todos.splice(position, 1);
         this.displayTodos();
     },
-
     // mark completed or not--------------------
     toggleCompleted(position) {
         const todo = this.todos[position];
@@ -67,15 +66,12 @@ const todoList = {
 };
 
 // display todo button
-const displayTodosButton = document.getElementById('displayTodosButton');
-const toggleAllButton = document.getElementById('toggleAllButton');
-
-displayTodosButton.addEventListener('click', ()=> {
-    todoList.displayTodos();
-});
-
-toggleAllButton.addEventListener('click', () => {
-    todoList.toggleAll();
-});
-
+const handlers = {
+    displayTodos: () => {
+        todoList.displayTodos();
+},
+    toggleAll: () => {
+        todoList.toggleAll();
+    }
+};
 
