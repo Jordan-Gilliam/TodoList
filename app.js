@@ -25,6 +25,7 @@ const todoList = {
         this.displayTodos();
     },
 
+
     // update a todo----------------------------
     changeTodo(position, todoText) {
         this.todos[position].todoText = todoText;
@@ -71,33 +72,33 @@ const handlers = {
         todoList.displayTodos();
     },
 
-    addTodo: () => {
-        let addTodoTextInput = document.getElementById('addTodoTextInput');
+    addTodo() {
+        const addTodoTextInput = document.getElementById('addTodoTextInput');
         todoList.addTodo(addTodoTextInput.value);
         addTodoTextInput.value = '';
     },
 
-    changeTodo: () => {
-        let changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
-        let changeTodoTextInput = document.getElementById('changeTodoTextInput');
-        todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoPositionInput.value);
+    changeTodo() {
+        const changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+        const changeTodoTextInput = document.getElementById('changeTodoTextInput');
+        todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
         changeTodoPositionInput.value = '';
         changeTodoTextInput.value = '';
     },
     
-    deleteTodo: () => {
-        let deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+    deleteTodo() {
+        const deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
         todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
         deleteTodoPositionInput.value = '';
     },
 
-    toggleCompleted: () => {
-        let toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput')
-        todoList.toggleCompletedPositionInput.value = '';
+    toggleCompleted() {
+        const toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
+        todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+        toggleCompletedPositionInput.value = '';
     },
-    toggleAll: () => {
+    toggleAll()  {
         todoList.toggleAll();
     }
 
 };
-
