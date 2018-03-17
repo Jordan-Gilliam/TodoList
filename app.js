@@ -69,9 +69,24 @@ const todoList = {
 const handlers = {
     displayTodos: () => {
         todoList.displayTodos();
-},
+    },
+
     toggleAll: () => {
         todoList.toggleAll();
+    },
+
+    addTodo: () => {
+        let addTodoTextInput = document.getElementById('addTodoTextInput');
+        todoList.addTodo(addTodoTextInput.value);
+        addTodoTextInput.value = '';
+    },
+
+    changeTodo: () => {
+        let changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+        let changeTodoTextInput = document.getElementById('changeTodoTextInput');
+        todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoPositionInput.value);
+        changeTodoPositionInput.value = '';
+        changeTodoTextInput.value = '';
     }
 };
 
