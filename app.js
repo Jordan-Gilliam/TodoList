@@ -91,9 +91,9 @@ const view = {
     displayTodos() {
         const todosUl = document.querySelector('ul');
         todosUl.innerHTML = ''
-        for (var i = 0; i < todoList.todos.length; i++) {
+       
+        todoList.todos.forEach((todo, position) => {
             const todoLi = document.createElement('li');
-            const todo = todoList.todos[i];
             let todoTextWithCompletion = '';
 
             if (todo.completed === true) {
@@ -102,11 +102,11 @@ const view = {
                 todoTextWithCompletion = '( ) ' + todo.todoText;
             }
 
-            todoLi.id = i;
+            todoLi.id = position;
             todoLi.textContent = todoTextWithCompletion;
             todoLi.appendChild(this.createDeleteButton());
             todosUl.appendChild(todoLi);
-        }
+        }, this);
     },
     createDeleteButton() {
         const deleteButton = document.createElement('button');
