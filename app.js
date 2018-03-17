@@ -64,4 +64,18 @@ const todoList = {
         }
         this.displayTodos();
     }
-}
+};
+
+// display todo button
+const displayTodosButton = document.getElementById('displayTodosButton');
+const toggleAllButton = document.getElementById('toggleAllButton');
+
+displayTodosButton.addEventListener('click', ()=> {
+    todoList.displayTodos();
+});
+
+toggleAllButton.addEventListener('click', () => {
+    todoList.toggleAll();
+});
+
+
