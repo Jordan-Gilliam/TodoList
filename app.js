@@ -28,27 +28,24 @@ const todoList = {
 
     // toggle all items-------------------------
     toggleAll() {
-        debugger;
         const totalTodos = this.todos.length;
         let completedTodos = 0;
 
-        // get number of completed todos
-        for(var i = 0; i < totalTodos; i++) {
-            if(this.todos[i].completed === true) {
+        this.todos.forEach((todo) => {
+            if (todo.complete === true) {
                 completedTodos++;
             }
-        }
-        // if everything is true
-        if (completedTodos === totalTodos) {
-            // make everything false
-            for (var i = 0; i < totalTodos; i++) {
-                this.todos[i].completed = false;
+        });
+
+        this.todos.forEach((todo) => {
+            // case 1: if everything is true make everything false
+            if (completedTodos === totalTodos) {
+                todo.completed = false;
+            // case 2: otherwise make everything true
+            } else {
+                todo.completed = true;
             }
-        } else {
-            for (var i = 0; i < totalTodos; i++) {
-                this.todos[i].completed = true;
-            }
-        }
+        })
     }
 };
 
