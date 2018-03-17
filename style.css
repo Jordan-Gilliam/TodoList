@@ -1,16 +1,19 @@
 body {
-  background-color: #dd4b39
+  background-color: #dd4b39;
 }
 
 h1 {
-  color: #fafafa
-
+  color: #fafafa;
+  text-align: center;
 }
 
 button {
-  color: #f1f1f1
+  background-color: #f1f1f1;
+  color: #db4c3f;
+  margin: .5%;
+  margin-left: 40%;
 }
 
 input {
-  background-color: #d2b8a3
+  background-color: #d2b8a3;
 }
