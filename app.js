@@ -1,20 +1,6 @@
 const todoList = {
     todos: [],
-    displayTodos() {
-        if (this.todos.length === 0) {
-            console.log("todo list is empty");
-        } else {
-            console.log("My todos: ");
-            for (let i = 0; i < this.todos.length; i++) {
-                if (this.todos[i].completed === true) {
-                    console.log('(x)', this.todos[i].todoText);
-                } else {
-                    console.log("( )", this.todos[i].todoText);
-                }
-            }
-        }
-
-    },
+    
 
     // add a new todo---------------------------
     addTodo(todoText) {
@@ -22,30 +8,27 @@ const todoList = {
             todoText,
             completed: false
         });
-        this.displayTodos();
     },
 
 
     // update a todo----------------------------
     changeTodo(position, todoText) {
         this.todos[position].todoText = todoText;
-        this.displayTodos();
     },
 
     // remove todos-----------------------------
     deleteTodo(position) {
         this.todos.splice(position, 1);
-        this.displayTodos();
     },
     // mark completed or not--------------------
     toggleCompleted(position) {
         const todo = this.todos[position];
         todo.completed = !todo.completed;
-        this.displayTodos();
     },
 
     // toggle all items-------------------------
     toggleAll() {
+        debugger;
         const totalTodos = this.todos.length;
         let completedTodos = 0;
 
@@ -59,23 +42,24 @@ const todoList = {
         if (completedTodos === totalTodos) {
             // make everything false
             for (var i = 0; i < totalTodos; i++) {
+                this.todos[i].completed = false;
+            }
+        } else {
+            for (var i = 0; i < totalTodos; i++) {
                 this.todos[i].completed = true;
             }
         }
-        this.displayTodos();
     }
 };
 
 // display todo button
 const handlers = {
-    displayTodos: () => {
-        todoList.displayTodos();
-    },
-
+    
     addTodo() {
         const addTodoTextInput = document.getElementById('addTodoTextInput');
         todoList.addTodo(addTodoTextInput.value);
         addTodoTextInput.value = '';
+        view.displayTodos();
     },
 
     changeTodo() {
@@ -84,21 +68,49 @@ const handlers = {
         todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
         changeTodoPositionInput.value = '';
         changeTodoTextInput.value = '';
+        view.displayTodos();
     },
     
     deleteTodo() {
         const deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
         todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
         deleteTodoPositionInput.value = '';
+        view.displayTodos();
     },
 
     toggleCompleted() {
         const toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
         todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
         toggleCompletedPositionInput.value = '';
+        view.displayTodos();
     },
     toggleAll()  {
+        const toggleAllButton = document.getElementById('toggleAllButton');
         todoList.toggleAll();
+        view.displayTodos();
     }
 
 };
+
+const view = {
+    displayTodos() {
+        const todosUl = document.querySelector('ul');
+        todosUl.innerHTML = ''
+        for (var i = 0; i < todoList.todos.length; i++) {
+            const todoLi = document.createElement('li');
+            const todo = todoList.todos[i];
+            let todoTextWithCompletion = '';
+
+            if (todo.completed === true) {
+                todoTextWithCompletion = '(x) ' + todo.todoText;
+            } else {
+                todoTextWithCompletion = '( ) ' + todo.todoText;
+            }
+
+            todoLi.textContent = todoTextWithCompletion;
+
+            // todoLi.textContent = todoList.todos[i].todoText;
+            todosUl.appendChild(todoLi);
+        }
+    }
+}
